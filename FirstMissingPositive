@@ -1,0 +1,21 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+		boolean[] record = new boolean[nums.length];
+        int min = Integer.MAX_VALUE;
+        for(int num: nums){
+            if(num > nums.length+1){
+                min = Math.min(min, num);
+            }
+            if(num <= nums.length && num>0){
+                record[num-1]=true;
+            }
+        }
+        for(int i=0;i<record.length;i++){
+            if(!record[i]){
+                return i+1;
+            }
+        }
+        return min == Integer.MAX_VALUE? nums.length+1:min-1;
+    }
+}
+
